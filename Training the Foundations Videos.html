@@ -1,0 +1,685 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Training the Foundations  Videos</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(142, 58, 1, 0.141); }
+.select-value-color-orange { background-color: rgba(213, 96, 0, 0.188); }
+.select-value-color-yellow { background-color: rgba(209, 155, 0, 0.238); }
+.select-value-color-green { background-color: rgba(1, 104, 42, 0.145); }
+.select-value-color-blue { background-color: rgba(0, 108, 191, 0.156); }
+.select-value-color-purple { background-color: rgba(104, 1, 184, 0.125); }
+.select-value-color-pink { background-color: rgba(204, 1, 88, 0.137); }
+.select-value-color-red { background-color: rgba(228, 26, 0, 0.148); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="23172d5a-f2de-80be-ae15-df8287c95517" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📽️</span></div><h1 class="page-title">Training the Foundations  Videos</h1><p class="page-description"></p></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Video #1 Can we translate the Bible?</summary><div class="indented"><div><p id="23172d5a-f2de-80a2-9c76-ce724f9b0fd4" class=""><strong>Watch:</strong></p><figure id="23172d5a-f2de-80b8-9397-d6963d7638c7"><div class="source"><a href="https://videopress.com/v/VIuq2fIa">https://videopress.com/v/VIuq2fIa</a></div></figure><h2 id="23172d5a-f2de-8094-a48f-d4e5ac38d054" class=""><strong>Discuss:</strong></h2><p id="23172d5a-f2de-8073-9040-e2e369ac437e" class="">Now that you have watched the video, here are some questions to think about and discuss:</p><ul id="23172d5a-f2de-80d5-af18-ea60e6b21dd8" class="bulleted-list"><li style="list-style-type:disc">Why did the Tano want the Bible in their own language instead of the trade language they were already using? <em>(possible answer: They found the words in the trade language Bible confusing) </em><ul id="23272d5a-f2de-80b5-a521-fdc007c9173b" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-8008-b226-d2c6c8263357" class="bulleted-list"><li style="list-style-type:square">Do the people in your language understand the trade language Bible?  How well do most people understand it?</li></ul><ul id="25572d5a-f2de-8042-bb80-c2e2c5ce8256" class="bulleted-list"><li style="list-style-type:square">Do you think you need a Bible in your language? If so why do you want a Bible in your own language? </li></ul><ul id="25572d5a-f2de-80f5-8fe0-d0f5130c3180" class="bulleted-list"><li style="list-style-type:square">Are there particular words in the trade language that your people struggle to understand?</li></ul></li></ul></li></ul><ul id="23172d5a-f2de-80be-8c53-f615534bb24e" class="bulleted-list"><li style="list-style-type:disc">What did the church leaders do as a result of this need? <em>(possible answer: They prayed for God to help them understand the word and strengthen the church) </em><ul id="23272d5a-f2de-8039-9e22-eb9b4dff983c" class="bulleted-list"><li style="list-style-type:circle">Discussion question: How have your church leaders addressed your language’s need for the Bible?</li></ul></li></ul><ul id="23172d5a-f2de-8018-baec-c1bad47b6662" class="bulleted-list"><li style="list-style-type:disc">What were believers in Mai doing? <em>(possible answer: They were translating the Bible into their own language) </em><ul id="23272d5a-f2de-80a0-a8c8-f84b1c7d3658" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-800a-a83b-fd75f8eedeed" class="bulleted-list"><li style="list-style-type:square">Have you seen other language groups translate bible successfully? </li></ul><ul id="25572d5a-f2de-8014-bd0b-d6bcf575ad93" class="bulleted-list"><li style="list-style-type:square">What skills or abilities do you think that you are missing?</li></ul></li></ul></li></ul><ul id="23172d5a-f2de-8096-9ac1-c23862c0230c" class="bulleted-list"><li style="list-style-type:disc">What did the Tano church leaders ask the Mai to do for them? <em>(possible answer: They asked them to translate the Bible into Tano just like they were doing for Mai)</em> <ul id="23272d5a-f2de-803c-a938-d3d6f62040e0" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-805b-b19c-f93be62c4221" class="bulleted-list"><li style="list-style-type:square">Have you reached out to other people or organizations for help before? </li></ul><ul id="25572d5a-f2de-80aa-bebc-d11cb317998f" class="bulleted-list"><li style="list-style-type:square">What were their responses?</li></ul></li></ul></li></ul><ul id="23172d5a-f2de-80bb-b930-edda02ea18cb" class="bulleted-list"><li style="list-style-type:disc">After refusing to do the translation for them, what did the Mai leaders offer to do for the Tano? (possible answer: They said that they would help the Tano be equipped to translate the Bible for themselves by offering to teach them what they had learned) <ul id="23272d5a-f2de-8055-8f2a-d15f3c85dffc" class="bulleted-list"><li style="list-style-type:circle">Discussion question: What would give you more confidence to produce a good quality translation?</li></ul></li></ul><ul id="23172d5a-f2de-802f-bb82-e8a9705e55d0" class="bulleted-list"><li style="list-style-type:disc">What was the Tano’s reaction to this at first? <em>(possible answer: They did not feel qualified to do the work of translation) </em><ul id="23272d5a-f2de-8001-87e5-f03e37e95b1b" class="bulleted-list"><li style="list-style-type:circle">Discussion question:  How do you feel being told that you are going to produce your own translation rather than have someone help you or translate it for you?</li></ul></li></ul><ul id="23172d5a-f2de-807c-8524-cf60be634993" class="bulleted-list"><li style="list-style-type:disc">How did the Mai leaders reassure the Tano? <em>(possible answers: They said they felt the same at the beginning, but that God was with them in their work and that they did not need special permission to do this work since it was of God. They also offered to work alongside the Tano to help them.) </em><ul id="23272d5a-f2de-8005-b4fe-ec38fd24c9c1" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-80c7-9744-dd16f60e1870" class="bulleted-list"><li style="list-style-type:square">Have people discouraged you from producing a translation work on your own?</li></ul><ul id="25572d5a-f2de-8099-8da1-cdb87afda51b" class="bulleted-list"><li style="list-style-type:square">What  have been their reasons on why producing a translation on your own is not a good idea?</li></ul></li></ul></li></ul><ul id="23172d5a-f2de-8053-a391-e0bf89b385f3" class="bulleted-list"><li style="list-style-type:disc">How did the Mai encourage the Tano the next day? <em>(possible answer: They prayed for them and assured them that the Mai would help them begin the work very soon)</em> <ul id="23272d5a-f2de-805e-83f2-dd3168321afc" class="bulleted-list"><li style="list-style-type:circle">Discussion question: How could other language groups help and encourage you with your translation work?</li></ul></li></ul><ul id="23172d5a-f2de-8063-8d25-c582a45579f1" class="bulleted-list"><li style="list-style-type:disc">What is the key lesson of this story? <em>(possible answer: God’s people can translate the Bible for themselves) </em><ul id="23272d5a-f2de-80e5-828a-eaf9cacd8b55" class="bulleted-list"><li style="list-style-type:circle">Discussion question: What are your thoughts or concerns after watching this video?</li></ul></li></ul></div></div></details><figure id="25672d5a-f2de-80ea-b478-c0555f85cb7a" class="link-to-page"><a href="https://www.notion.so/Further-Study-Options-Video-1-Can-we-translate-the-Bible-25672d5af2de80eab478c0555f85cb7a?pvs=21">Further Study Options: Video #1 Can we translate the Bible?</a></figure><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Video #2 How do we address translation issues? </summary><div class="indented"><div><p id="22772d5a-f2de-80e8-9f0e-c313e1055a66" class=""><strong>Watch:</strong></p><figure id="22772d5a-f2de-80a2-a04e-d45f7ccf30aa"><div class="source"><a href="https://videopress.com/v/okSnm9pU">https://videopress.com/v/okSnm9pU</a></div></figure><h2 id="22772d5a-f2de-8021-99f6-dedc459ded72" class=""><strong>Discuss:</strong></h2><p id="22772d5a-f2de-809c-9eeb-cb8b55335635" class="">Now that you have watched the video, here are some questions to think about and discuss:</p><ul id="22772d5a-f2de-80b8-b4ab-e8ad8f9b64af" class="bulleted-list"><li style="list-style-type:disc">What did the Tano notice about the first translations of their draft? (possible answer: They were confusing.)<ul id="23872d5a-f2de-80d5-a8c3-c541c8797dfc" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Have you experienced similar problems when you have translated the Bible for yourself? </li></ul></li></ul><ul id="22772d5a-f2de-8004-a312-f77fdf8d2572" class="bulleted-list"><li style="list-style-type:disc">What did the Tano find most difficult about their translation? <em>(possible answers: They had a hard time understanding the word-for-word translation in their own language; the words were in the Tano language, but did not sound natural.)</em><ul id="23872d5a-f2de-80e8-9c61-ca770dcd98f7" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-808c-b4f3-eae928e67d35" class="bulleted-list"><li style="list-style-type:square">What are some examples of how you need to change the word order of your language from the trade language for it to sound natural? </li></ul><ul id="25572d5a-f2de-809b-b9f8-e3d0aa39d915" class="bulleted-list"><li style="list-style-type:square">Are there words you need to add for sentences to make sense or that the trade language uses that you don’t need?</li></ul></li></ul></li></ul><ul id="22772d5a-f2de-80a7-a078-d323336993b5" class="bulleted-list"><li style="list-style-type:disc">How were they able to improve the translation? <em>(possible answer: They kept the meaning the same, but used Tano forms.)</em><ul id="23872d5a-f2de-80ba-aa4a-e9c0dd63b683" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Are there ways you know you are going to have to change the forms of the resource or trade language for it to sound good or for the meaning to make sense in your language?</li></ul></li></ul><ul id="22772d5a-f2de-80bc-babf-f784ff12c126" class="bulleted-list"><li style="list-style-type:disc">What were some of the things that affected the form of the language? (<em>possible answer: </em>The number of words, the order of words, etc.)</li></ul><ul id="22772d5a-f2de-8004-a0bb-da8478677413" class="bulleted-list"><li style="list-style-type:disc">How were the Tano able to change the form but make sure they meaning stayed the same? <em>(possible answer: They would check to see that nothing is added, nothing is missing, and nothing is changed)</em><ul id="22772d5a-f2de-8057-8ef6-f4dbede9cd98" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Are there any sayings or expressions in your language that would not make any sense if you translated them literally into <span style="border-bottom:0.05em solid">English (fill in your trade language)</span>?</li></ul></li></ul></div><figure id="25672d5a-f2de-8057-bf32-dcc8940c932f" class="link-to-page"><a href="https://www.notion.so/Further-Study-Options-Video-2-How-do-we-address-translation-issues-25672d5af2de8057bf32dcc8940c932f?pvs=21">Further Study Options: Video #2 How do we address translation issues?</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Video #3 How do we get started?</summary><div class="indented"><div><div><h2 id="22772d5a-f2de-80e8-9478-cf4e3c7b3e66" class=""><strong>Watch</strong></h2><figure id="22772d5a-f2de-8039-8694-dd51d972e630"><div class="source"><a href="https://videopress.com/v/nKbT6pGU">https://videopress.com/v/nKbT6pGU</a></div></figure><h2 id="22772d5a-f2de-8018-8517-c070091b5072" class=""><strong>Discuss:</strong></h2><p id="22772d5a-f2de-803e-b9fb-e1ce57f15ae0" class="">Now that you have watched the video, here are some questions to think about and discuss:</p><ul id="22772d5a-f2de-8009-978f-faaa90756882" class="bulleted-list"><li style="list-style-type:disc">What did the Tano find difficult to understand? <em>(possible answer: The concept of “tower” and “calculate”)</em><ul id="23972d5a-f2de-8012-820f-dd3b480c54d5" class="bulleted-list"><li style="list-style-type:circle">Discussion question: What are some concepts or words from the Bible you think would to be difficult to translate into your language?</li></ul></li></ul><ul id="22772d5a-f2de-80c2-9adf-e6b7b1258e18" class="bulleted-list"><li style="list-style-type:disc">What did the Tano understand the passage to mean once it was explained to them? (They understood that they needed to plan for their Bible translation project)</li></ul><ul id="22772d5a-f2de-808c-ba97-f1a4202c2228" class="bulleted-list"><li style="list-style-type:disc">What questions did the Mai use to help the Tano identify who would be doing the translation work? <em>(possible answers: Who knows the trade language well? Who speaks your language best? Who are the best storytellers? Who are your respected elders? Who can represent different generations and skills?)</em><ul id="23972d5a-f2de-80a3-bd2b-f35f20a20a70" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Who are some people you think could fill these roles on your team?</li></ul></li></ul><ul id="22772d5a-f2de-80b3-8654-e85bffcd8a85" class="bulleted-list"><li style="list-style-type:disc">Why did the Mai say this team approach was necessary? <em>(possible answers: So that the translation would be trustworthy, easy to understand, appropriate for their culture, and in a style that sounds correct to the people)</em><ul id="25572d5a-f2de-806c-92a8-c700c4f683ec" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-80da-9cae-c0b76c977372" class="bulleted-list"><li style="list-style-type:square">Have you had anyone try to produce a translation in your language by themselves? </li></ul><ul id="25572d5a-f2de-8079-9a93-d4670afd8384" class="bulleted-list"><li style="list-style-type:square">If so what problems have they encountered?</li></ul></li></ul></li></ul><ul id="22772d5a-f2de-8004-8507-f2288f354f42" class="bulleted-list"><li style="list-style-type:disc">What process did the Mai outline for the Tano? <em>(possible answers: They had a team prepare a faithful draft, then they checked it with the church leaders and the community; then they made changes based on the feedback they received)</em><ul id="25572d5a-f2de-804a-b905-ec44bb715efa" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-80aa-a4d9-c240725c99ad" class="bulleted-list"><li style="list-style-type:square">If you are already doing translation work, what process are you following? </li></ul><ul id="25572d5a-f2de-806f-97be-dbc8d710b20a" class="bulleted-list"><li style="list-style-type:square">Do you have this process documented in any way? (Facilitator Tip: You could stop and have each person on the team document the process separately on a 3x5 card. Then compare the cards and combine everyone’s into a single process card that is the same for everyone.)</li></ul></li></ul></li></ul><ul id="22772d5a-f2de-80fc-b1bb-cf2bd8674467" class="bulleted-list"><li style="list-style-type:disc">What did the Mai encourage them to do in the community? <em>(possible answer: The Mai encouraged them to involve the whole community in the project)</em><ul id="25572d5a-f2de-80ca-a22d-c8471f6fb3e7" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-8003-836d-c4ccfc181cb1" class="bulleted-list"><li style="list-style-type:square">Have you involved the larger community in your translation project? </li></ul><ul id="25572d5a-f2de-8037-bff8-c3264b0df2ec" class="bulleted-list"><li style="list-style-type:square">If so, how have you done this? </li></ul><ul id="25572d5a-f2de-80e3-9dd4-c3f29d58a98e" class="bulleted-list"><li style="list-style-type:square">After watching the video do you have any other ideas you’d like to try?</li></ul></li></ul></li></ul><ul id="22772d5a-f2de-8052-a4a0-cf4ee9e74f98" class="bulleted-list"><li style="list-style-type:disc">How did the Mai encourage the translation team? <em>(possible answers: They told them about the hardships they were able to overcome, they explained how these hardships helped the church to strengthen its faith)</em><ul id="25572d5a-f2de-804f-8053-d0ffa078926b" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-804e-88a8-ec10e44c44f3" class="bulleted-list"><li style="list-style-type:square">What hardships has you translation team faced?</li></ul></li></ul></li></ul><ul id="22772d5a-f2de-809d-aa8d-e839ca1522c7" class="bulleted-list"><li style="list-style-type:disc">How did the Mai help the Tano understand the audience for their translation project? (They helped them identify who the translation was for and understanding their needs)<ul id="25572d5a-f2de-8000-8f9e-d4511cecda8b" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Who is the audience for your translation?</li></ul></li></ul><ul id="22772d5a-f2de-808f-85b1-d664455c5fda" class="bulleted-list"><li style="list-style-type:disc">How else did the Mai help the Tano? <em>(possible answers: They offered to help them with translation resources and training in how to use them and put them in touch with others who used them in their translation work)</em><ul id="25572d5a-f2de-8077-add6-e05ca4137b44" class="bulleted-list"><li style="list-style-type:circle">Discussion question: What kind of help would you like to receive from outside sources?</li></ul></li></ul></div></div><hr id="25672d5a-f2de-801c-8750-d246883dfd08"/><figure id="25672d5a-f2de-80a4-9c1c-c786cd43fdc2" class="link-to-page"><a href="https://www.notion.so/Further-Study-Options-Video-3-How-do-we-get-started-25672d5af2de80a49c1cc786cd43fdc2?pvs=21">Further Study Options: Video #3 How do we get started?</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Video #4 How do we translate?</summary><div class="indented"><figure id="23272d5a-f2de-80c1-89fc-c4ed83dc46cb"><div class="source"><a href="https://videopress.com/v/2Xj9JI1e">https://videopress.com/v/2Xj9JI1e</a></div></figure><h2 id="25272d5a-f2de-8020-a85b-efe49b79a133" class=""><strong>Discuss:</strong></h2><p id="25272d5a-f2de-804d-8961-d6df9140a3ee" class="">Now that you have watched the video, here are some questions to think about and discuss:</p><ul id="25272d5a-f2de-8080-9e43-e891cd4b3b78" class="bulleted-list"><li style="list-style-type:disc">Why was it necessary for the Tano and Mai to begin the project with prayer? <em>(possible answer: This is a work of God and it is important to seek God’s favor and presence when translating the Bible.)</em><ul id="25572d5a-f2de-805a-be66-f2bdea637ede" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-80a9-8069-da9e02263d01" class="bulleted-list"><li style="list-style-type:square">Would you share with us how your church network has been involved in praying for your translation project. </li></ul><ul id="25672d5a-f2de-80ae-9869-d97c1b535d88" class="bulleted-list"><li style="list-style-type:square">Take a few minutes to discuss ways you could increase prayer for the work (ex: newsletters, representatives in churches that give updates, dedicated days or times of prayer, on-line prayer groups using Whatsapp or other tools, etc.)</li></ul></li></ul></li></ul><ul id="25272d5a-f2de-80b1-ae43-d0f6999375a7" class="bulleted-list"><li style="list-style-type:disc">What is the benefit of beginning to translate from passages that mean the most to the church? <em>(possible answer: The passage will be meaningful for both the people translating and those who receive the translation.)</em><ul id="25572d5a-f2de-8028-aa31-e572809ef3da" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: What passages do you think would be particularly meaningful or helpful to your churches?</li></ul></li></ul><ul id="25272d5a-f2de-807c-a401-e1fa94c1ae2b" class="bulleted-list"><li style="list-style-type:disc">What questions did the Mai use to help the Tano identify what the passage was about? <em>(possible answers: What did you like? What did you not like? What was difficult to understand? What did you discover about God, Jesus, or the Holy Spirit? What did you discover about people? How does this change your life? How will you obey this teaching? Who needs to hear what you have learned?)</em><ul id="25572d5a-f2de-809a-9d68-d89526d85399" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Are there any particular questions you always ask when studying a passage of Scripture with others?</li></ul></li></ul><ul id="25272d5a-f2de-8010-9f79-fbc059c7bd21" class="bulleted-list"><li style="list-style-type:disc">Why did the Mai spend so much time studying the passage before they began teaching them how to translate? (<em>possible answer: </em>In order to translate faithfully, it was important to understand the meaning of the passage thoroughly.)<ul id="25572d5a-f2de-80d8-b5ae-f5126c9dfbb3" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: Do you have a good process for studying the passage before you translate or do you think this is an area you need to improve? Why or why not?</li></ul></li></ul><ul id="25272d5a-f2de-802e-88fd-ec0c443c5b9f" class="bulleted-list"><li style="list-style-type:disc">What were some of the things the Mai suggested they do to learn more about the passage? <em>(possible answers: They used their mobile devices to learn more about the culture and places where the story took place. They would act it out in different ways to gain a deeper understanding.)</em><ul id="25572d5a-f2de-8013-bac7-fc81592205aa" class="bulleted-list"><li style="list-style-type:circle">Discussion question: What things do you think would be good to add to help you understand process?</li></ul></li></ul><ul id="25272d5a-f2de-8011-89b8-c56ab5ea6469" class="bulleted-list"><li style="list-style-type:disc">What did the Mai do next to encourage the Tano to understand the passage? <em>(possible answers: They discussed the actual words and phrases from the story and asked, “How would your neighbors say that phrase?” They asked what words they would use and identify which word was best for the story. They asked questions about particular words and how they were used and whether they were appropriate.)</em><ul id="25572d5a-f2de-8012-830f-d9ebac5786de" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-8024-810c-ce980f968d40" class="bulleted-list"><li style="list-style-type:square">Do you already do this as part of your process? </li></ul><ul id="25572d5a-f2de-8059-a72b-c30cfd6dbd7c" class="bulleted-list"><li style="list-style-type:square">Is there anything you think would be good to add after watching the video?</li></ul></li></ul></li></ul><ul id="25272d5a-f2de-8093-83b9-dd9ee5abb2b7" class="bulleted-list"><li style="list-style-type:disc">How did they handle disagreements? (<em>possible answers: They prayed, checked resources, asked questions, and discussed the matter among one another.)</em><ul id="25572d5a-f2de-8060-b821-f6c46e7c8422" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-80be-81f7-eee3e9216fa5" class="bulleted-list"><li style="list-style-type:square">How do you handle disagreements? </li></ul><ul id="25572d5a-f2de-8072-91fd-f247c023e48a" class="bulleted-list"><li style="list-style-type:square">Do you think they are handled well or do you think this is an area in which you would like to improve? If you feel you would like to improve discuss ways to do that and then share them.</li></ul></li></ul></li></ul><ul id="25272d5a-f2de-801a-9bde-c2cb679bd65c" class="bulleted-list"><li style="list-style-type:disc">How did they handle difficult passages? <em>(possible answer: They used the resources they had to make good translation decisions.)</em><ul id="25572d5a-f2de-8020-845c-c042cda2c13b" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-80e1-a0c2-f3013286d316" class="bulleted-list"><li style="list-style-type:square">How do you handle difficult passages? </li></ul><ul id="25572d5a-f2de-803f-9203-fa1d45737fb7" class="bulleted-list"><li style="list-style-type:square">What do you do when you aren’t sure you understand a process?</li></ul><ul id="25572d5a-f2de-8052-b8bd-c37bdfb1a127" class="bulleted-list"><li style="list-style-type:square">Are there any passages where your process has not been sufficient to resolve a difficult passage?</li></ul></li></ul></li></ul><ul id="25272d5a-f2de-80f6-952b-caea23da806d" class="bulleted-list"><li style="list-style-type:disc">What was the outcome of all this preparation and work? <em>(possible answers: They were able to produce a translation that was faithful to the meaning that all the Tano could understand and that the church leaders agreed used the right words and phrases that sounded like good Tano.)</em><ul id="25572d5a-f2de-8062-b885-c616eb9a6970" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-80f5-ac9e-e42a7d9b3c82" class="bulleted-list"><li style="list-style-type:square">Do you feel you are producing a translation that is faithful or do you feel you could improve your translation? </li></ul><ul id="25572d5a-f2de-802d-9cca-e4be82af35e6" class="bulleted-list"><li style="list-style-type:square">If you think you could improve its faithfulness, give some examples.</li></ul></li></ul></li></ul><figure id="25672d5a-f2de-80b0-88b5-e193a0ed6e0c" class="link-to-page"><a href="https://www.notion.so/Further-Study-Options-Video-4-How-do-we-translate-25672d5af2de80b088b5e193a0ed6e0c?pvs=21">Further Study Options: Video #4 How do we translate?</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Video #5 How do we know it is a good quality translation? </summary><div class="indented"><div><p id="21772d5a-f2de-80f3-808c-f1ba5a5d444c" class=""><strong>Watch: </strong></p><figure id="22372d5a-f2de-803b-b280-fdafda765429"><div class="source"><a href="https://videopress.com/v/wXq4DaKl">https://videopress.com/v/wXq4DaKl</a></div></figure><p id="21772d5a-f2de-8052-9f0f-f9ac3a395f14" class=""><strong>Discuss:</strong></p><p id="21772d5a-f2de-8013-899b-d96c734ef608" class="">Now that you have watched the video, here are some questions to think about and discuss:</p><ul id="21e72d5a-f2de-80bd-9775-e29bd163b27b" class="bulleted-list"><li style="list-style-type:disc">Who did they choose to share the translation drafts with? (<em>possible answers: </em>The community, old people, young people, church members, relatives)<ul id="25572d5a-f2de-80e9-bd5f-e28f62b3e94e" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Who are some people you want to be sure to share your drafts with? Work together to make a list.</li></ul></li></ul><ul id="21e72d5a-f2de-801a-b04b-d439219ca5b2" class="bulleted-list"><li style="list-style-type:disc">Why is it important to get many different people to hear the translation? (<em>possible answers: </em>To make sure the language is easy to understand for all levels)</li></ul><ul id="21e72d5a-f2de-80ca-9f04-f7a1873cdec1" class="bulleted-list"><li style="list-style-type:disc">What qualities were they trying to work on when they did the community review? (<em>possible answers: </em>CANA/TUAA)<ul id="25572d5a-f2de-8001-bf85-de85e109ebe7" class="bulleted-list"><li style="list-style-type:circle">Discussion question: How can you involve the community in evaluating and improving these qualities in your translation?</li></ul></li></ul><ul id="21e72d5a-f2de-805f-9871-e4fe99844487" class="bulleted-list"><li style="list-style-type:disc">How did having the audience retell what they heard help with the quality of the translation? (<em>possible answer: </em>It helped find if anything was added, missing, or changed)</li></ul><ul id="21e72d5a-f2de-80ff-acbb-cfa58af78fab" class="bulleted-list"><li style="list-style-type:disc">What happened because of the review? (<em>possible answer: </em>They were able to make changes that helped make the text easier to understand)</li></ul><ul id="21e72d5a-f2de-80ca-a3e0-d3aefa299010" class="bulleted-list"><li style="list-style-type:disc">After they checked the feedback, what did they do? (<em>possible answer: </em>They got feedback from the church leaders and shared it with their neighbors and friends)<ul id="25572d5a-f2de-809a-9ba4-c5fce654ee28" class="bulleted-list"><li style="list-style-type:circle">Discussion question: What process are you planning to put in place to ensure feedback from the community is received and that it helps improve your translation?</li></ul></li></ul></div><figure id="25672d5a-f2de-800e-9aea-d3222ac3a6ca" class="link-to-page"><a href="https://www.notion.so/Further-Study-Options-Video-5-How-do-we-know-it-is-a-good-quality-translation-25672d5af2de800e9aead3222ac3a6ca?pvs=21">Further Study Options: Video #5 How do we know it is a good quality translation?</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Video #6 How do we know the Translation is finished?</summary><div class="indented"><div><p id="23172d5a-f2de-80e9-8055-f80c6b2493bb" class=""><strong>Watch:</strong></p><figure id="23172d5a-f2de-80b0-8fff-c772bcfbf26c"><div class="source"><a href="https://videopress.com/v/ONOwA09o">https://videopress.com/v/ONOwA09o</a></div></figure><p id="23172d5a-f2de-803d-986a-db2852187415" class=""><strong>Discuss:</strong></p><p id="23172d5a-f2de-8083-9d5e-d8500a7c9c77" class="">Now that you have watched the video, here are some questions to think about and discuss:</p><ul id="23172d5a-f2de-80af-bfc5-c312b0cbe66a" class="bulleted-list"><li style="list-style-type:disc">What did the Tano they do with the translation as it progressed? <em>(possible answer: They taught it to the church and discussed it with the community)</em><ul id="25572d5a-f2de-808e-8bf6-d1360a23acdd" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-802b-957d-ed5478995f8c" class="bulleted-list"><li style="list-style-type:square">When are your going to make your drafts available to the church and community? </li></ul><ul id="25572d5a-f2de-800b-b7dd-c5eef95daaf1" class="bulleted-list"><li style="list-style-type:square">How are you going to use them in the church to test them?</li></ul></li></ul></li></ul><ul id="23172d5a-f2de-80be-8f24-e11d3a7874e7" class="bulleted-list"><li style="list-style-type:disc">What happened to discourage the translation team? <em>(possible answer: There was opposition to the work and accusations that the church did not have the ability or right to translate the Bible)</em><ul id="25572d5a-f2de-80ba-9c92-f7e354a3c9dd" class="bulleted-list"><li style="list-style-type:circle">Discussion questions:<ul id="25572d5a-f2de-80f2-bb1f-db738389793d" class="bulleted-list"><li style="list-style-type:square">Has anyone opposed your translation or accused you of not having the ability to translate the Bible? </li></ul><ul id="25572d5a-f2de-80fc-81a4-f9441cfe552c" class="bulleted-list"><li style="list-style-type:square">How have you responded? </li></ul><ul id="25572d5a-f2de-80c4-afb6-fac8bef71fa1" class="bulleted-list"><li style="list-style-type:square">What do you think a good response would be?</li></ul></li></ul></li></ul><ul id="23172d5a-f2de-8067-9dbe-ca47e5612a98" class="bulleted-list"><li style="list-style-type:disc">How did the Mai encourage the Tano? <em>(possible answers: They prayed for them and said that Jesus warned his followers about opposition and persecution. They reminded them about the good work that God was doing and how thankful they were that God was bearing good fruit.)</em><ul id="25572d5a-f2de-80e1-ba10-f8b0dce61d93" class="bulleted-list"><li style="list-style-type:circle">Discussion question: How can you encourage one another when opposition comes?</li></ul></li></ul><ul id="23172d5a-f2de-80eb-abcd-c87d17ba41a5" class="bulleted-list"><li style="list-style-type:disc">What did they compare the work of translation to?<em> (possible answer: They compared it to tea growers in their region and emphasized that it was an ongoing work and the tea must be cared for even if the farmer only plants the field one time)</em></li></ul><ul id="23172d5a-f2de-80fa-8318-e5d9a0861d58" class="bulleted-list"><li style="list-style-type:disc">How was this like the work of translation? <em>(possible answer: As the church, the elders and the community showed them areas for improvement, they would incorporate those insights into improving their translation)</em></li></ul><ul id="23172d5a-f2de-80fa-bdb9-e5582bf9d7f0" class="bulleted-list"><li style="list-style-type:disc">In what way is the work of processing tea similar to the work of improving translation? <em>(possible answers: The translation would need checks, reviews, help from churches, organizations, and experts with helpful tools, resources, and additional training to increase their ability to translate with greater accuracy and clarity)</em></li></ul><ul id="23172d5a-f2de-800a-8cd1-c35212c701fd" class="bulleted-list"><li style="list-style-type:disc">What was the final encouragement the Mai gave to the Tano?<em> (possible answers: Just like the tea plants needed ongoing work, the translation would need ongoing work for future revisions to maintain translation quality)</em></li></ul></div><figure id="25672d5a-f2de-8093-b4fe-e6ee29bc393b" class="link-to-page"><a href="https://www.notion.so/Further-Study-Options-Video-6-How-do-we-know-the-Translation-is-finished-25672d5af2de8093b4fee6ee29bc393b?pvs=21">Further Study Options: Video #6 How do we know the Translation is finished?</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Video #7 How do we share Bible Translation?</summary><div class="indented"><figure id="23272d5a-f2de-80d4-a374-d649848f59a3"><div class="source"><a href="https://videopress.com/v/1ONQZd6G">https://videopress.com/v/1ONQZd6G</a></div></figure><p id="23172d5a-f2de-804b-86f7-dc8eec9fa021" class="">Now that you have watched the video, here are some questions to think about and discuss:</p><ul id="23172d5a-f2de-8058-925e-e6105fb634b4" class="bulleted-list"><li style="list-style-type:disc">What did the Tano do when they finished their translation of Luke? <em>(possible answer: They celebrated)</em><ul id="25572d5a-f2de-8042-93f9-cfdaab6e9f31" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: <ul id="25572d5a-f2de-809a-a0bd-f84f94debe38" class="bulleted-list"><li style="list-style-type:square">How do you celebrate when something important happens? </li></ul><ul id="25572d5a-f2de-803a-8ba0-cf1592d0d5d9" class="bulleted-list"><li style="list-style-type:square">What kinds of celebrations do you think would be good for each passage or book? </li></ul><ul id="25572d5a-f2de-80bc-880e-e2bce3dcc6aa" class="bulleted-list"><li style="list-style-type:square">How about for a testament? </li></ul><ul id="25572d5a-f2de-801e-8069-f52c9441f2e1" class="bulleted-list"><li style="list-style-type:square">What milestones should you celebrate? </li></ul><ul id="25572d5a-f2de-80e2-b227-e90781cb6a94" class="bulleted-list"><li style="list-style-type:square">How will you let people and churches know when a milestone has been reached?</li></ul></li></ul></li></ul><ul id="23172d5a-f2de-800f-802a-e70285aa08d1" class="bulleted-list"><li style="list-style-type:disc">Who did the Tano share the gospel with? <em>(possible answer: The Jima and Talu)</em><ul id="25572d5a-f2de-804c-81ae-c30c57ee8205" class="bulleted-list"><li style="list-style-type:circle">Discussion questions: What other people groups is your church trying to reach?</li></ul></li></ul><ul id="23172d5a-f2de-8006-b540-c1bf9288a86a" class="bulleted-list"><li style="list-style-type:disc">What did the people share about at the celebration? <em>(possible answers: People shared how God’s words, came alive in their hearts once they could understand it in their language, it helped them to follow Jesus, pray, and love one another, it deepened their understanding of Scripture, strengthened their church, and helped them to spread the Good News to the Jima and Talu)</em><ul id="25572d5a-f2de-802c-9dfc-c6ba97fcba32" class="bulleted-list"><li style="list-style-type:circle">Discussion question: How are you going to capture and share stories of the impact of your translation work?</li></ul></li></ul><ul id="23172d5a-f2de-807c-8151-ec3cd2896397" class="bulleted-list"><li style="list-style-type:disc">What did the Mai encourage the Tano to do? <em>(possible answers: The Mai encourage the Tano to be good stewards of the word, to obey it, and to share it)</em><ul id="25572d5a-f2de-80cf-aac2-d1540d7ea8c8" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Do you have any stories of understanding the Word that has had impact on people’s lives?</li></ul></li></ul><ul id="23172d5a-f2de-802a-b12d-da82230106a7" class="bulleted-list"><li style="list-style-type:disc">What did the Tano ask the Mai on behalf of the Jima and Talu people at the celebration? <em>(possible answer: They wanted the Mai to train the Jima and Talu how to translate the Bible just like they taught the Tano)</em></li></ul><ul id="23172d5a-f2de-8077-a7dd-eb3b70ac4723" class="bulleted-list"><li style="list-style-type:disc">How did the Mai respond?<em> (possible answer: The Mai were happy to help, but they felt the Tano should also help train the Jima and Talu people)</em></li></ul><ul id="23172d5a-f2de-80e2-b446-e559d18d9a87" class="bulleted-list"><li style="list-style-type:disc">What did the Tano do? <em>(possible answer: They agreed to help the Jima and Talu people by teaching them what they had learned from the Mai)</em><ul id="25572d5a-f2de-80fd-9497-e0fae14f8172" class="bulleted-list"><li style="list-style-type:circle">Discussion question: Who do you think God is asking your your church to help?</li></ul></li></ul><ul id="23172d5a-f2de-8084-a1e5-f9c0e17474d7" class="bulleted-list"><li style="list-style-type:disc">How did the Tano come to see Bible translation? As an end in itself or something else? <em>(possible answer: They saw it as part of God’s Mission to share the Gospel, make disciples, and strengthen the church)</em><ul id="25572d5a-f2de-802d-b073-f2e1919f503e" class="bulleted-list"><li style="list-style-type:circle">Discussion question: What do you think? What is the purpose of Bible translation?</li></ul></li></ul><figure id="25672d5a-f2de-8073-be86-d320112a21f5" class="link-to-page"><a href="https://www.notion.so/Further-Study-Options-Video-7-How-do-we-share-Bible-Translation-25672d5af2de8073be86d320112a21f5?pvs=21">Further Study Options Video #7 How do we share Bible Translation?: </a></figure></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
