@@ -21,6 +21,7 @@ const VideoScreen = ({ route, navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isDiscussionExpanded, setIsDiscussionExpanded] = useState(false);
   const videoRef = useRef(null);
+  const discussionScrollRef = useRef(null);
 
   useEffect(() => {
     const loadVideo = async () => {
@@ -28,9 +29,18 @@ const VideoScreen = ({ route, navigation }) => {
       const videoId = currentVideoIndex + 1;
       const videoData = getVideoData(videoId);
       setCurrentVideo(videoData);
+      // Reset discussion panel state when video changes
+      setIsDiscussionExpanded(false);
       setTimeout(() => setIsLoading(false), 100);
     };
     loadVideo();
+  }, [currentVideoIndex]);
+
+  // Reset discussion scroll position when video changes
+  useEffect(() => {
+    if (discussionScrollRef.current) {
+      discussionScrollRef.current.scrollTo({ y: 0, animated: true });
+    }
   }, [currentVideoIndex]);
 
   useEffect(() => {
@@ -135,7 +145,11 @@ const VideoScreen = ({ route, navigation }) => {
           </Text>
         </TouchableOpacity>
 
-        <ScrollView style={styles.discussionScroll} showsVerticalScrollIndicator={true}>
+        <ScrollView 
+          ref={discussionScrollRef}
+          style={styles.discussionScroll} 
+          showsVerticalScrollIndicator={true}
+        >
           <Text style={styles.discussionText}>{currentVideo.discussion}</Text>
         </ScrollView>
 
@@ -171,12 +185,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#000', 
     position: 'relative', 
     width: '100%', 
-    height: height * 0.45, 
-    minHeight: 200 
+    height: height * 0.35, 
+    minHeight: 180 
   },
   videoContainerCollapsed: {
-    height: height * 0.15,
-    minHeight: 80
+    height: height * 0.12,
+    minHeight: 60
   },
   video: { width: '100%', height: '100%', backgroundColor: '#000', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
   videoTitleContainer: { position: 'absolute', top: 10, left: 10, right: 10, backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: 12, borderRadius: 8, zIndex: 10 },
@@ -189,11 +203,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20, 
     borderTopRightRadius: 20, 
     overflow: 'hidden', 
-    marginTop: -15 
+    marginTop: -5 
   },
   discussionContainerExpanded: {
     flex: 1,
-    marginTop: -15
+    marginTop: -5
   },
   discussionHeader: { 
     backgroundColor: '#2c3e50', 
