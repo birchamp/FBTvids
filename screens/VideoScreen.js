@@ -19,6 +19,7 @@ const VideoScreen = ({ route, navigation }) => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(video.id - 1);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDiscussionExpanded, setIsDiscussionExpanded] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -63,6 +64,10 @@ const VideoScreen = ({ route, navigation }) => {
     Alert.alert('Video Error', 'There was an error loading the video.', [{ text: 'OK' }]);
   };
 
+  const toggleDiscussionExpanded = () => {
+    setIsDiscussionExpanded(!isDiscussionExpanded);
+  };
+
   if (!currentVideo) {
     return (
       <View style={styles.container}>
@@ -77,7 +82,10 @@ const VideoScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.videoContainer}>
+      <View style={[
+        styles.videoContainer,
+        isDiscussionExpanded && styles.videoContainerCollapsed
+      ]}>
         {!isLoading && videoSource && (
           <Video
             ref={videoRef}
@@ -113,10 +121,19 @@ const VideoScreen = ({ route, navigation }) => {
         )}
       </View>
 
-      <View style={styles.discussionContainer}>
-        <View style={styles.discussionHeader}>
-          <Text style={styles.discussionTitle}>Discussion Questions</Text>
-        </View>
+      <View style={[
+        styles.discussionContainer,
+        isDiscussionExpanded && styles.discussionContainerExpanded
+      ]}>
+        <TouchableOpacity 
+          style={styles.discussionHeader}
+          onPress={toggleDiscussionExpanded}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.discussionTitle}>
+            Discussion Questions {isDiscussionExpanded ? '▼' : '▲'}
+          </Text>
+        </TouchableOpacity>
 
         <ScrollView style={styles.discussionScroll} showsVerticalScrollIndicator={true}>
           <Text style={styles.discussionText}>{currentVideo.discussion}</Text>
@@ -150,14 +167,41 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#000' },
   loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
   loadingText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
-  videoContainer: { backgroundColor: '#000', position: 'relative', width: '100%', height: height * 0.45, minHeight: 200 },
+  videoContainer: { 
+    backgroundColor: '#000', 
+    position: 'relative', 
+    width: '100%', 
+    height: height * 0.45, 
+    minHeight: 200 
+  },
+  videoContainerCollapsed: {
+    height: height * 0.15,
+    minHeight: 80
+  },
   video: { width: '100%', height: '100%', backgroundColor: '#000', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
   videoTitleContainer: { position: 'absolute', top: 10, left: 10, right: 10, backgroundColor: 'rgba(0, 0, 0, 0.8)', padding: 12, borderRadius: 8, zIndex: 10 },
   videoTitle: { color: '#fff', fontSize: 16, fontWeight: 'bold', textAlign: 'center' },
   videoFallback: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.9)', zIndex: 5 },
   videoFallbackText: { color: '#fff', fontSize: 18, fontWeight: 'bold', textAlign: 'center', lineHeight: 24 },
-  discussionContainer: { flex: 1, backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, overflow: 'hidden', marginTop: -15 },
-  discussionHeader: { backgroundColor: '#2c3e50', padding: 15, alignItems: 'center' },
+  discussionContainer: { 
+    flex: 1, 
+    backgroundColor: '#fff', 
+    borderTopLeftRadius: 20, 
+    borderTopRightRadius: 20, 
+    overflow: 'hidden', 
+    marginTop: -15 
+  },
+  discussionContainerExpanded: {
+    flex: 1,
+    marginTop: -15
+  },
+  discussionHeader: { 
+    backgroundColor: '#2c3e50', 
+    padding: 15, 
+    alignItems: 'center',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
   discussionTitle: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
   discussionScroll: { flex: 1, padding: 20 },
   discussionText: { fontSize: 16, lineHeight: 24, color: '#2c3e50' },
