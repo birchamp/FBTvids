@@ -1,8 +1,16 @@
 {
   "expo": {
-    "name": "fbt-videos-app",
+    "name": "Foundations BT",
     "slug": "fbt-videos-app",
     "version": "1.0.0",
+    "platforms": [
+      "android"
+    ],
+    "android": {
+      "package": "com.unfoldingword.fbtapp",
+      "versionCode": 1,
+      "permissions": []
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -16,7 +24,11 @@
     "web": {
       "bundler": "metro",
       "favicon": "./assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d292c857-f3d4-4c3c-88bf-4bbc99edee77"
+      }
     }
   }
 }
-
