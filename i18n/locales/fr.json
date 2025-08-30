@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "Fondations BT",
+    "subtitle": "Vidéos de formation pour la traduction biblique"
+  },
+  "navigation": {
+    "home": "Vidéos FBT",
+    "video": "Vidéo et Discussion"
+  },
+  "home": {
+    "loading": "Chargement des vidéos...",
+    "videoNumber": "Vidéo #{{number}}",
+    "thumbnailFallback": "Vidéo #{{number}}"
+  },
+  "video": {
+    "loading": "Chargement de la vidéo...",
+    "notAvailable": "Vidéo non disponible sur cette plateforme",
+    "videoTitle": "Vidéo #{{number}}: {{title}}",
+    "discussion": {
+      "title": "Questions de Discussion",
+      "expand": "▲",
+      "collapse": "▼"
+    },
+    "navigation": {
+      "previous": "← Précédent",
+      "next": "Suivant →",
+      "counter": "{{current}} sur {{total}}",
+      "alerts": {
+        "endOfVideos": "Fin des Vidéos",
+        "endMessage": "Ceci est la dernière vidéo de la série.",
+        "beginningOfVideos": "Début des Vidéos",
+        "beginningMessage": "Ceci est la première vidéo de la série.",
+        "videoError": "Erreur Vidéo",
+        "errorMessage": "Une erreur s'est produite lors du chargement de la vidéo."
+      }
+    }
+  },
+  "errors": {
+    "somethingWentWrong": "Quelque chose s'est mal passé"
+  }
+}

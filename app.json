@@ -9,14 +9,18 @@
     "android": {
       "package": "com.unfoldingword.fbtapp",
       "versionCode": 1,
-      "permissions": []
+      "permissions": [],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#2c3e50"
+      }
     },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2c3e50"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,6 +28,15 @@
     "web": {
       "bundler": "metro",
       "favicon": "./assets/icon.png"
+    },
+    "locales": {
+      "en": "./i18n/locales/en.json",
+      "es": "./i18n/locales/es.json",
+      "fr": "./i18n/locales/fr.json",
+      "ar": "./i18n/locales/ar.json",
+      "zh": "./i18n/locales/zh.json",
+      "hi": "./i18n/locales/hi.json",
+      "id": "./i18n/locales/id.json"
     },
     "extra": {
       "eas": {

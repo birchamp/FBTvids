@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "Foundations BT",
+    "subtitle": "Training videos for Bible translation"
+  },
+  "navigation": {
+    "home": "FBT Videos",
+    "video": "Video & Discussion"
+  },
+  "home": {
+    "loading": "Loading videos...",
+    "videoNumber": "Video #{{number}}",
+    "thumbnailFallback": "Video #{{number}}"
+  },
+  "video": {
+    "loading": "Loading video...",
+    "notAvailable": "Video not available on this platform",
+    "videoTitle": "Video #{{number}}: {{title}}",
+    "discussion": {
+      "title": "Discussion Questions",
+      "expand": "▲",
+      "collapse": "▼"
+    },
+    "navigation": {
+      "previous": "← Previous",
+      "next": "Next →",
+      "counter": "{{current}} of {{total}}",
+      "alerts": {
+        "endOfVideos": "End of Videos",
+        "endMessage": "This is the last video in the series.",
+        "beginningOfVideos": "Beginning of Videos",
+        "beginningMessage": "This is the first video in the series.",
+        "videoError": "Video Error",
+        "errorMessage": "There was an error loading the video."
+      }
+    }
+  },
+  "errors": {
+    "somethingWentWrong": "Something went wrong"
+  }
+}

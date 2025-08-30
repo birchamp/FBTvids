@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "أساسيات BT",
+    "subtitle": "فيديوهات تدريبية لترجمة الكتاب المقدس"
+  },
+  "navigation": {
+    "home": "فيديوهات FBT",
+    "video": "فيديو ومناقشة"
+  },
+  "home": {
+    "loading": "جاري تحميل الفيديوهات...",
+    "videoNumber": "فيديو #{{number}}",
+    "thumbnailFallback": "فيديو #{{number}}"
+  },
+  "video": {
+    "loading": "جاري تحميل الفيديو...",
+    "notAvailable": "الفيديو غير متاح على هذه المنصة",
+    "videoTitle": "فيديو #{{number}}: {{title}}",
+    "discussion": {
+      "title": "أسئلة المناقشة",
+      "expand": "▲",
+      "collapse": "▼"
+    },
+    "navigation": {
+      "previous": "← السابق",
+      "next": "التالي →",
+      "counter": "{{current}} من {{total}}",
+      "alerts": {
+        "endOfVideos": "نهاية الفيديوهات",
+        "endMessage": "هذا آخر فيديو في السلسلة.",
+        "beginningOfVideos": "بداية الفيديوهات",
+        "beginningMessage": "هذا أول فيديو في السلسلة.",
+        "videoError": "خطأ في الفيديو",
+        "errorMessage": "حدث خطأ أثناء تحميل الفيديو."
+      }
+    }
+  },
+  "errors": {
+    "somethingWentWrong": "حدث خطأ ما"
+  }
+}
