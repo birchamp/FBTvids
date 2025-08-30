@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "Dasar BT",
+    "subtitle": "Video pelatihan untuk penerjemahan Alkitab"
+  },
+  "navigation": {
+    "home": "Video FBT",
+    "video": "Video & Diskusi"
+  },
+  "home": {
+    "loading": "Memuat video...",
+    "videoNumber": "Video #{{number}}",
+    "thumbnailFallback": "Video #{{number}}"
+  },
+  "video": {
+    "loading": "Memuat video...",
+    "notAvailable": "Video tidak tersedia di platform ini",
+    "videoTitle": "Video #{{number}}: {{title}}",
+    "discussion": {
+      "title": "Pertanyaan Diskusi",
+      "expand": "▲",
+      "collapse": "▼"
+    },
+    "navigation": {
+      "previous": "← Sebelumnya",
+      "next": "Selanjutnya →",
+      "counter": "{{current}} dari {{total}}",
+      "alerts": {
+        "endOfVideos": "Akhir Video",
+        "endMessage": "Ini adalah video terakhir dalam seri.",
+        "beginningOfVideos": "Awal Video",
+        "beginningMessage": "Ini adalah video pertama dalam seri.",
+        "videoError": "Kesalahan Video",
+        "errorMessage": "Terjadi kesalahan saat memuat video."
+      }
+    }
+  },
+  "errors": {
+    "somethingWentWrong": "Terjadi kesalahan"
+  }
+}

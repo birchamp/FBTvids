@@ -126,3 +126,4 @@ fi
 echo ""
 echo "📚 For manual download instructions, see: VIDEO_SETUP.md"
 
+

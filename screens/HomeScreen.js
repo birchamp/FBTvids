@@ -9,19 +9,24 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import { getVideoMetadata, getThumbnail } from '../data/videos';
+import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+import { getThumbnail } from '../data/videos';
+import { useVideoContent } from '../i18n/videoContentManager';
 
 const { width, height } = Dimensions.get('window');
 
 const HomeScreen = ({ navigation }) => {
+  const { t, i18n } = useTranslation();
+  const { getAllVideoData } = useVideoContent();
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    console.log('HomeScreen mounting...');
+  const loadVideos = () => {
+    console.log('Loading videos for language:', i18n.language);
     try {
-      // Load video metadata when component mounts
-      const videoData = getVideoMetadata().map(video => ({
+      // Load video metadata with translations
+      const videoData = getAllVideoData().map(video => ({
         ...video,
         thumbnail: getThumbnail(video.id)
       }));
@@ -32,12 +37,24 @@ const HomeScreen = ({ navigation }) => {
       console.error('Error loading video metadata:', error);
       setLoading(false);
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    console.log('HomeScreen mounting...');
+    loadVideos();
+  }, []); // Initial load
+
+  useEffect(() => {
+    // Reload videos when language changes
+    loadVideos();
+  }, [i18n.language]); // Reload when language changes
 
   const renderVideoItem = ({ item }) => (
     <TouchableOpacity
       style={styles.videoCard}
       onPress={() => navigation.navigate('Video', { video: item })}
+      accessibilityLabel={`${t('home.videoNumber', { number: item.id })} - ${item.title}`}
+      accessibilityRole="button"
     >
       <View style={styles.thumbnailContainer}>
         {item.thumbnail ? (
@@ -50,13 +67,28 @@ const HomeScreen = ({ navigation }) => {
           />
         ) : (
           <View style={styles.thumbnailFallback}>
-            <Text style={styles.thumbnailText}>Video #{item.id}</Text>
+            <Ionicons name="play-circle" size={48} color="#fff" />
+            <Text style={styles.thumbnailText}>
+              {t('home.thumbnailFallback', { number: item.id })}
+            </Text>
           </View>
         )}
+        <View style={styles.playIconOverlay}>
+          <Ionicons name="play" size={32} color="#fff" />
+        </View>
       </View>
       <View style={styles.videoInfo}>
-        <Text style={styles.videoNumber}>Video #{item.id}</Text>
+        <View style={styles.videoHeader}>
+          <Ionicons name="videocam" size={16} color="#7f8c8d" />
+          <Text style={styles.videoNumber}>
+            {t('home.videoNumber', { number: item.id })}
+          </Text>
+        </View>
         <Text style={styles.videoTitle}>{item.title}</Text>
+        <View style={styles.videoMeta}>
+          <Ionicons name="time-outline" size={14} color="#7f8c8d" />
+          <Text style={styles.videoMetaText}>Training Video</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -67,7 +99,8 @@ const HomeScreen = ({ navigation }) => {
     return (
       <View style={styles.container}>
         <View style={styles.loadingContainer}>
-          <Text style={styles.loadingText}>Loading videos...</Text>
+          <Ionicons name="refresh" size={48} color="#34495e" />
+          <Text style={styles.loadingText}>{t('home.loading')}</Text>
         </View>
       </View>
     );
@@ -76,9 +109,12 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Foundations BT Videos</Text>
+        <View style={styles.headerIconContainer}>
+          <Ionicons name="school" size={32} color="#fff" />
+        </View>
+        <Text style={styles.headerTitle}>{t('app.name')}</Text>
         <Text style={styles.headerSubtitle}>
-          Training videos for Bible translation
+          {t('app.subtitle')}
         </Text>
       </View>
       
@@ -108,11 +144,15 @@ const styles = StyleSheet.create({
   loadingText: {
     fontSize: 18,
     color: '#34495e',
+    marginTop: 10,
   },
   header: {
     padding: 20,
     backgroundColor: '#2c3e50',
     alignItems: 'center',
+  },
+  headerIconContainer: {
+    marginBottom: 10,
   },
   headerTitle: {
     fontSize: 24,
@@ -165,22 +205,47 @@ const styles = StyleSheet.create({
   },
   thumbnailText: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 'bold',
+    marginTop: 8,
+  },
+  playIconOverlay: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -16 }, { translateY: -16 }],
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 20,
+    padding: 8,
   },
   videoInfo: {
     padding: 15,
   },
+  videoHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
   videoNumber: {
     fontSize: 14,
     color: '#7f8c8d',
-    marginBottom: 5,
+    marginLeft: 5,
   },
   videoTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#2c3e50',
     lineHeight: 24,
+    marginBottom: 8,
+  },
+  videoMeta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  videoMetaText: {
+    fontSize: 12,
+    color: '#7f8c8d',
+    marginLeft: 5,
   },
   separator: {
     height: 15,

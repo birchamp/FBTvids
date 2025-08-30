@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "फाउंडेशन BT",
+    "subtitle": "बाइबिल अनुवाद के लिए प्रशिक्षण वीडियो"
+  },
+  "navigation": {
+    "home": "FBT वीडियो",
+    "video": "वीडियो और चर्चा"
+  },
+  "home": {
+    "loading": "वीडियो लोड हो रहे हैं...",
+    "videoNumber": "वीडियो #{{number}}",
+    "thumbnailFallback": "वीडियो #{{number}}"
+  },
+  "video": {
+    "loading": "वीडियो लोड हो रहा है...",
+    "notAvailable": "इस प्लेटफॉर्म पर वीडियो उपलब्ध नहीं है",
+    "videoTitle": "वीडियो #{{number}}: {{title}}",
+    "discussion": {
+      "title": "चर्चा के प्रश्न",
+      "expand": "▲",
+      "collapse": "▼"
+    },
+    "navigation": {
+      "previous": "← पिछला",
+      "next": "अगला →",
+      "counter": "{{current}} / {{total}}",
+      "alerts": {
+        "endOfVideos": "वीडियो का अंत",
+        "endMessage": "यह श्रृंखला का अंतिम वीडियो है।",
+        "beginningOfVideos": "वीडियो की शुरुआत",
+        "beginningMessage": "यह श्रृंखला का पहला वीडियो है।",
+        "videoError": "वीडियो त्रुटि",
+        "errorMessage": "वीडियो लोड करने में त्रुटि हुई।"
+      }
+    }
+  },
+  "errors": {
+    "somethingWentWrong": "कुछ गलत हो गया"
+  }
+}

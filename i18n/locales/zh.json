@@ -1,0 +1,41 @@
+{
+  "app": {
+    "name": "基础 BT",
+    "subtitle": "圣经翻译培训视频"
+  },
+  "navigation": {
+    "home": "FBT 视频",
+    "video": "视频与讨论"
+  },
+  "home": {
+    "loading": "正在加载视频...",
+    "videoNumber": "视频 #{{number}}",
+    "thumbnailFallback": "视频 #{{number}}"
+  },
+  "video": {
+    "loading": "正在加载视频...",
+    "notAvailable": "此平台不提供视频",
+    "videoTitle": "视频 #{{number}}: {{title}}",
+    "discussion": {
+      "title": "讨论问题",
+      "expand": "▲",
+      "collapse": "▼"
+    },
+    "navigation": {
+      "previous": "← 上一个",
+      "next": "下一个 →",
+      "counter": "{{current}} / {{total}}",
+      "alerts": {
+        "endOfVideos": "视频结束",
+        "endMessage": "这是系列中的最后一个视频。",
+        "beginningOfVideos": "视频开始",
+        "beginningMessage": "这是系列中的第一个视频。",
+        "videoError": "视频错误",
+        "errorMessage": "加载视频时出现错误。"
+      }
+    }
+  },
+  "errors": {
+    "somethingWentWrong": "出现错误"
+  }
+}
