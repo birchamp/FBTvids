@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,9 +8,11 @@ import {
   Dimensions,
   Alert,
   Platform,
+  StatusBar,
 } from 'react-native';
 import { Video } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import { useTranslation } from 'react-i18next';
 import { getVideoUrl } from '../data/videos';
 import { useVideoContent } from '../i18n/videoContentManager';
@@ -26,8 +28,13 @@ const VideoScreen = ({ route, navigation }) => {
   const [currentVideo, setCurrentVideo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isDiscussionExpanded, setIsDiscussionExpanded] = useState(false);
+  const [isVideoTitleVisible, setIsVideoTitleVisible] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
   const discussionScrollRef = useRef(null);
+  const titleHideTimeoutRef = useRef(null);
+  const prevIsPlayingRef = useRef(null);
 
   const loadVideo = () => {
     setIsLoading(true);
@@ -82,6 +89,32 @@ const VideoScreen = ({ route, navigation }) => {
     };
   }, [currentVideoIndex]);
 
+  // Ensure title reflects playback state when video loads/changes
+  useEffect(() => {
+    if (!isLoading && currentVideo) {
+      // Show title on load/change. If playing, it will auto-hide; if paused, it stays.
+      showVideoTitle(true);
+    }
+  }, [currentVideo, isLoading]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (titleHideTimeoutRef.current) {
+        clearTimeout(titleHideTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Cleanup fullscreen on unmount
+  useEffect(() => {
+    return () => {
+      // Ensure we reset orientation when component unmounts
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
+      StatusBar.setHidden(false);
+    };
+  }, []);
+
   const goToNextVideo = () => {
     if (currentVideoIndex < getAllVideoData().length - 1) {
       if (videoRef.current) videoRef.current.unloadAsync();
@@ -119,6 +152,91 @@ const VideoScreen = ({ route, navigation }) => {
     setIsDiscussionExpanded(!isDiscussionExpanded);
   };
 
+  const showVideoTitle = useCallback((autoHide = true, playing = isPlaying) => {
+    setIsVideoTitleVisible(true);
+    // Clear any existing timeout
+    if (titleHideTimeoutRef.current) {
+      clearTimeout(titleHideTimeoutRef.current);
+    }
+    // Only auto-hide when autoHide is true and video is playing
+    if (autoHide && playing) {
+      titleHideTimeoutRef.current = setTimeout(() => {
+        setIsVideoTitleVisible(false);
+      }, 3000);
+    }
+  }, [isPlaying]);
+
+  const hideVideoTitle = useCallback(() => {
+    if (titleHideTimeoutRef.current) {
+      clearTimeout(titleHideTimeoutRef.current);
+    }
+    setIsVideoTitleVisible(false);
+  }, []);
+
+  const handleVideoAreaPress = useCallback(() => {
+    // If paused, keep title visible; if playing, show then auto-hide
+    showVideoTitle(true);
+  }, [showVideoTitle]);
+
+  const enterFullscreen = useCallback(async () => {
+    try {
+      setIsFullscreen(true);
+      // Lock to landscape orientation
+      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+      // Hide status bar for full immersion
+      StatusBar.setHidden(true);
+    } catch (error) {
+      console.log('Error entering fullscreen:', error);
+    }
+  }, []);
+
+  const exitFullscreen = useCallback(async () => {
+    try {
+      setIsFullscreen(false);
+      // Unlock orientation (return to portrait)
+      await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+      // Show status bar again
+      StatusBar.setHidden(false);
+    } catch (error) {
+      console.log('Error exiting fullscreen:', error);
+    }
+  }, []);
+
+  // Handle fullscreen change from video controls
+  const handleFullscreenUpdate = useCallback(async (event) => {
+    const { fullscreenUpdate } = event;
+    if (fullscreenUpdate === Video.FULLSCREEN_UPDATE_PLAYER_WILL_PRESENT) {
+      await enterFullscreen();
+    } else if (fullscreenUpdate === Video.FULLSCREEN_UPDATE_PLAYER_WILL_DISMISS) {
+      await exitFullscreen();
+    }
+  }, [enterFullscreen, exitFullscreen]);
+
+  // Track playback status to control title visibility
+  const handlePlaybackStatusUpdate = useCallback((status) => {
+    if (!status || !status.isLoaded) return;
+
+    const isNowPlaying = status.isPlaying;
+    const wasPlaying = prevIsPlayingRef.current;
+
+    // Update playing state
+    setIsPlaying(isNowPlaying);
+
+    // Only react when play/pause state changes
+    if (wasPlaying !== isNowPlaying) {
+      if (isNowPlaying) {
+        // Transitioned to playing: show briefly then auto-hide
+        showVideoTitle(true, true);
+      } else {
+        // Transitioned to paused/buffering: keep title visible
+        showVideoTitle(false, false);
+      }
+    }
+
+    // Track previous state
+    prevIsPlayingRef.current = isNowPlaying;
+  }, [showVideoTitle]);
+
   if (!currentVideo) {
     return (
       <View style={styles.container}>
@@ -133,28 +251,45 @@ const VideoScreen = ({ route, navigation }) => {
   const videoSource = currentVideo.videoUrl || null; // number (native) or null (web)
 
   return (
-    <View style={styles.container}>
-      <View style={[
-        styles.videoContainer,
-        isDiscussionExpanded && styles.videoContainerCollapsed
-      ]}>
+    <View style={[
+      styles.container,
+      isFullscreen && styles.containerFullscreen
+    ]}>
+      <TouchableOpacity
+        style={[
+          styles.videoContainer,
+          isDiscussionExpanded && styles.videoContainerCollapsed,
+          isFullscreen && styles.videoContainerFullscreen
+        ]}
+        onPress={handleVideoAreaPress}
+        activeOpacity={1}
+      >
         {!isLoading && videoSource && (
           <Video
             ref={videoRef}
-            style={styles.video}
+            style={[
+              styles.video,
+              isFullscreen && styles.videoFullscreen
+            ]}
             source={videoSource}
             useNativeControls
-            resizeMode="contain"
+            resizeMode={isFullscreen ? "cover" : "contain"}
             isLooping={false}
             onError={handleVideoError}
             shouldPlay={true}
             isMuted={false}
             onLoad={() => console.log('Video loaded successfully')}
             onLoadStart={() => console.log('Video loading started')}
+            onFullscreenUpdate={handleFullscreenUpdate}
+            presentationStyle={isFullscreen ? "fullscreen" : "inline"}
+            onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
           />
         )}
 
-        <View style={styles.videoTitleContainer}>
+        <View style={[
+          styles.videoTitleContainer,
+          !isVideoTitleVisible && styles.videoTitleContainerHidden
+        ]}>
           <Ionicons name="play-circle" size={20} color="#fff" style={styles.videoTitleIcon} />
           <Text style={styles.videoTitle}>
             {t('video.videoTitle', { number: currentVideo.id, title: currentVideo.title })}
@@ -174,12 +309,13 @@ const VideoScreen = ({ route, navigation }) => {
             <Text style={styles.videoFallbackText}>{t('video.notAvailable')}</Text>
           </View>
         )}
-      </View>
+      </TouchableOpacity>
 
-      <View style={[
-        styles.discussionContainer,
-        isDiscussionExpanded && styles.discussionContainerExpanded
-      ]}>
+      {!isFullscreen && (
+        <View style={[
+          styles.discussionContainer,
+          isDiscussionExpanded && styles.discussionContainerExpanded
+        ]}>
         <TouchableOpacity 
           style={styles.discussionHeader}
           onPress={toggleDiscussionExpanded}
@@ -242,6 +378,7 @@ const VideoScreen = ({ route, navigation }) => {
           />
         </View>
       </View>
+      )}
     </View>
   );
 };
@@ -281,17 +418,21 @@ const styles = StyleSheet.create({
     right: 0, 
     bottom: 0 
   },
-  videoTitleContainer: { 
-    position: 'absolute', 
-    top: 10, 
-    left: 10, 
-    right: 10, 
-    backgroundColor: 'rgba(0, 0, 0, 0.8)', 
-    padding: 12, 
-    borderRadius: 8, 
+  videoTitleContainer: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    right: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    padding: 12,
+    borderRadius: 8,
     zIndex: 10,
     flexDirection: 'row',
     alignItems: 'center',
+    opacity: 1,
+  },
+  videoTitleContainerHidden: {
+    opacity: 0,
   },
   videoTitleIcon: {
     marginRight: 8,
@@ -376,11 +517,35 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  videoCounter: { 
-    fontSize: 16, 
-    color: '#2c3e50', 
+  videoCounter: {
+    fontSize: 16,
+    color: '#2c3e50',
     fontWeight: 'bold',
     marginLeft: 5,
+  },
+  // Fullscreen styles
+  containerFullscreen: {
+    backgroundColor: '#000',
+    paddingTop: 0,
+  },
+  videoContainerFullscreen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: height, // Swap dimensions for landscape
+    height: width,
+    backgroundColor: '#000',
+    zIndex: 9999,
+  },
+  videoFullscreen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: height, // Swap dimensions for landscape
+    height: width,
+    backgroundColor: '#000',
   },
 });
 
