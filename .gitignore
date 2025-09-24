@@ -1,2 +1,5 @@
 node_modules
 .expo
+build
+apks
+.DS_Store
