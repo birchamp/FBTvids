@@ -23,7 +23,9 @@
       "backgroundColor": "#2c3e50"
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/**/*",
+      "thumbs/**/*",
+      "i18n/**/*"
     ],
     "web": {
       "bundler": "metro",
@@ -42,6 +44,9 @@
       "eas": {
         "projectId": "d292c857-f3d4-4c3c-88bf-4bbc99edee77"
       }
-    }
+    },
+    "plugins": [
+      "./plugins/withFbtAssetPack"
+    ]
   }
 }

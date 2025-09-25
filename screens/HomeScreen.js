@@ -6,15 +6,12 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
-  Dimensions,
-  Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { getThumbnail } from '../data/videos';
 import { useVideoContent } from '../i18n/videoContentManager';
 
-const { width, height } = Dimensions.get('window');
 
 const HomeScreen = ({ navigation }) => {
   const { t, i18n } = useTranslation();
@@ -23,14 +20,12 @@ const HomeScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
 
   const loadVideos = () => {
-    console.log('Loading videos for language:', i18n.language);
     try {
       // Load video metadata with translations
       const videoData = getAllVideoData().map(video => ({
         ...video,
         thumbnail: getThumbnail(video.id)
       }));
-      console.log('Video metadata loaded:', videoData.length, 'videos');
       setVideos(videoData);
       setLoading(false);
     } catch (error) {
@@ -40,7 +35,6 @@ const HomeScreen = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log('HomeScreen mounting...');
     loadVideos();
   }, []); // Initial load
 
@@ -62,8 +56,8 @@ const HomeScreen = ({ navigation }) => {
             source={item.thumbnail}
             style={styles.thumbnail}
             resizeMode="cover"
-            onError={(error) => console.log('Thumbnail load error:', error)}
-            onLoad={() => console.log('Thumbnail loaded successfully for video', item.id)}
+            onError={(error) => {}}
+            onLoad={() => {}}
           />
         ) : (
           <View style={styles.thumbnailFallback}>
@@ -93,7 +87,6 @@ const HomeScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
-  console.log('HomeScreen rendering, videos count:', videos.length, 'loading:', loading);
 
   if (loading) {
     return (

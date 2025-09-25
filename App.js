@@ -93,7 +93,6 @@ const AppContent = () => {
 };
 
 export default function App() {
-  console.log('App component rendering...');
   return (
     <ErrorBoundary>
       <AppContent />

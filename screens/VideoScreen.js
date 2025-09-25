@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Dimensions,
   Alert,
-  Platform,
   StatusBar,
 } from 'react-native';
 import { Video } from 'expo-av';
@@ -36,20 +35,53 @@ const VideoScreen = ({ route, navigation }) => {
   const titleHideTimeoutRef = useRef(null);
   const prevIsPlayingRef = useRef(null);
 
-  const loadVideo = () => {
-    setIsLoading(true);
-    const videoId = currentVideoIndex + 1;
-    const videoData = getVideoData(videoId);
-    const videoUrl = getVideoUrl(videoId);
-    
-    setCurrentVideo({
-      ...videoData,
-      videoUrl: videoUrl
-    });
-    // Reset discussion panel state when video changes
-    setIsDiscussionExpanded(false);
-    setTimeout(() => setIsLoading(false), 100);
-  };
+  useEffect(() => {
+    let isCancelled = false;
+
+    const loadVideoAsync = async () => {
+      setIsLoading(true);
+      const videoId = currentVideoIndex + 1;
+      const videoData = getVideoData(videoId);
+      const safeVideoData = videoData || {
+        id: videoId,
+        title: `Video #${videoId}`,
+        discussion: '',
+      };
+
+      try {
+        const videoSource = await getVideoUrl(videoId);
+        if (isCancelled) {
+          return;
+        }
+
+        setCurrentVideo({
+          ...safeVideoData,
+          videoUrl: videoSource,
+        });
+      } catch (error) {
+        console.warn('Failed to load local video', error);
+        if (!isCancelled) {
+          setCurrentVideo({
+            ...safeVideoData,
+            videoUrl: null,
+          });
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsDiscussionExpanded(false);
+        }
+        if (!isCancelled) {
+          setTimeout(() => setIsLoading(false), 100);
+        }
+      }
+    };
+
+    loadVideoAsync();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [currentVideoIndex, getVideoData]);
 
   const updateVideoText = () => {
     // Only update text content, not the video file
@@ -64,10 +96,6 @@ const VideoScreen = ({ route, navigation }) => {
       }));
     }
   };
-
-  useEffect(() => {
-    loadVideo();
-  }, [currentVideoIndex]); // Load when video index changes
 
   useEffect(() => {
     // Only update text content when language changes, don't reload video
@@ -137,6 +165,15 @@ const VideoScreen = ({ route, navigation }) => {
         t('video.navigation.alerts.beginningMessage')
       );
     }
+  };
+
+  const goToHomeScreen = () => {
+    // Stop video playback
+    if (videoRef.current) {
+      videoRef.current.unloadAsync();
+    }
+    // Navigate back to home screen
+    navigation.navigate('Home');
   };
 
   const handleVideoError = (error) => {
@@ -248,7 +285,7 @@ const VideoScreen = ({ route, navigation }) => {
     );
   }
 
-  const videoSource = currentVideo.videoUrl || null; // number (native) or null (web)
+  const videoSource = currentVideo.videoUrl || null; // { uri } when local asset is ready
 
   return (
     <View style={[
@@ -278,8 +315,8 @@ const VideoScreen = ({ route, navigation }) => {
             onError={handleVideoError}
             shouldPlay={true}
             isMuted={false}
-            onLoad={() => console.log('Video loaded successfully')}
-            onLoadStart={() => console.log('Video loading started')}
+            onLoad={() => {}}
+            onLoadStart={() => {}}
             onFullscreenUpdate={handleFullscreenUpdate}
             presentationStyle={isFullscreen ? "fullscreen" : "inline"}
             onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
@@ -357,7 +394,13 @@ const VideoScreen = ({ route, navigation }) => {
             accessibilityLabel={t('video.navigation.previous')}
           />
 
-          <View style={styles.videoCounterContainer}>
+          <TouchableOpacity 
+            style={styles.videoCounterContainer}
+            onPress={goToHomeScreen}
+            activeOpacity={0.7}
+            accessibilityLabel="Go to home screen"
+            accessibilityRole="button"
+          >
             <Ionicons name="list" size={16} color="#2c3e50" />
             <Text style={styles.videoCounter}>
               {t('video.navigation.counter', { 
@@ -365,7 +408,7 @@ const VideoScreen = ({ route, navigation }) => {
                 total: getAllVideoData().length 
               })}
             </Text>
-          </View>
+          </TouchableOpacity>
 
           <IconButton
             name="chevron-forward"
@@ -516,6 +559,10 @@ const styles = StyleSheet.create({
   videoCounterContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    backgroundColor: 'rgba(52, 152, 219, 0.1)',
   },
   videoCounter: {
     fontSize: 16,

@@ -19,8 +19,12 @@ docs/
 .vscode/
 .idea/
 
-# Training materials (if not needed in app)
-Training the Foundations Videos.html
+# Development scripts and tools
+*.py
+*.sh
+*.jar
+*.keystore
+device-spec.json
 
 # Keep these essential files:
 # - package.json (needed for dependencies)

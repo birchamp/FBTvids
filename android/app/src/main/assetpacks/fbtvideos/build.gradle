@@ -1,0 +1,8 @@
+plugins {
+    id 'com.android.asset-pack'
+}
+
+assetPack {
+    packName = 'fbtvideos'
+    deliveryType = 'install-time'
+}

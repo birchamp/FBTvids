@@ -1,7 +1,17 @@
-// Platform-specific data (native: iOS/Android)
+import { Platform } from 'react-native';
+import { getAssetPackVideoUri } from '../native/assetPack';
 import { useVideoContent } from '../i18n/videoContentManager';
 
-// Thumbnails (use .webp files only)
+const VIDEO_FILE_MAP = {
+  1: 'video1.mp4',
+  2: 'video2.mp4',
+  3: 'video3.mp4',
+  4: 'video4.mp4',
+  5: 'video5.mp4',
+  6: 'video6.mp4',
+  7: 'video7.mp4',
+};
+
 export const getThumbnail = (videoId) => {
   try {
     switch (videoId) {
@@ -14,74 +24,55 @@ export const getThumbnail = (videoId) => {
       case 7: return require('../thumbs/v7thumb.webp');
       default: return null;
     }
-  } catch (_e) {
+  } catch (_error) {
     console.warn(`Failed to load thumbnail for video ${videoId}`);
     return null;
   }
 };
 
-// Local video asset via require (safe on native platforms)
-export const getVideoUrl = (videoId) => {
-  try {
-    switch (videoId) {
-      case 1: return require('../assets/videos/video1.mp4');
-      case 2: return require('../assets/videos/video2.mp4');
-      case 3: return require('../assets/videos/video3.mp4');
-      case 4: return require('../assets/videos/video4.mp4');
-      case 5: return require('../assets/videos/video5.mp4');
-      case 6: return require('../assets/videos/video6.mp4');
-      case 7: return require('../assets/videos/video7.mp4');
-      default: return null;
-    }
-  } catch (_e) {
+export const getVideoFileName = (videoId) => VIDEO_FILE_MAP[videoId] ?? null;
+
+export const getVideoUrl = async (videoId) => {
+  if (Platform.OS !== 'android') {
     return null;
   }
+
+  const fileName = getVideoFileName(videoId);
+  if (!fileName) {
+    return null;
+  }
+
+  const uri = await getAssetPackVideoUri(fileName);
+  if (!uri) {
+    return null;
+  }
+
+  return { uri };
 };
 
-// Hook-based video data that uses translations
 export const useVideoData = () => {
   const { getVideoData, getAllVideoData, getVideoTitle, getVideoDiscussion } = useVideoContent();
-  
+
   const getVideoMetadata = () => getAllVideoData();
-  
-  const getVideoDataWithAssets = (videoId) => {
+
+  const getVideoDataWithAssets = async (videoId) => {
     const videoData = getVideoData(videoId);
     if (!videoData) return null;
-    
-    return { 
-      ...videoData, 
-      thumbnail: getThumbnail(videoId), 
-      videoUrl: getVideoUrl(videoId) 
+
+    const videoSource = await getVideoUrl(videoId);
+    return {
+      ...videoData,
+      thumbnail: getThumbnail(videoId),
+      videoUrl: videoSource,
     };
   };
-  
+
   return {
     getVideoMetadata,
     getVideoData: getVideoDataWithAssets,
     getVideoTitle,
     getVideoDiscussion,
     getThumbnail,
-    getVideoUrl
+    getVideoUrl,
   };
 };
-
-// Legacy exports for backward compatibility
-export const getVideoMetadata = () => {
-  // This will be replaced by the hook-based approach
-  // For now, return basic structure
-  return Array.from({ length: 7 }, (_, i) => ({
-    id: i + 1,
-    title: `Video #${i + 1}`,
-    discussion: ''
-  }));
-};
-
-export const getVideoData = (videoId) => {
-  const meta = getVideoMetadata().find(v => v.id === videoId);
-  if (!meta) return null;
-  return { ...meta, thumbnail: getThumbnail(videoId), videoUrl: getVideoUrl(videoId) };
-};
-
-export const videos = getVideoMetadata().map(v => ({ ...v, thumbnail: getThumbnail(v.id), videoUrl: getVideoUrl(v.id) }));
-
-
