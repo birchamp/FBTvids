@@ -22,9 +22,11 @@ docs/
 # Development scripts and tools
 *.py
 *.sh
-*.jar
 *.keystore
 device-spec.json
+
+# Exclude specific JAR files but keep Gradle wrapper
+bundletool.jar
 
 # Keep these essential files:
 # - package.json (needed for dependencies)
