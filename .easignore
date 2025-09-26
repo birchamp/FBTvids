@@ -1,31 +1,44 @@
 # Build artifacts - these should not be included in new builds
 build/
 apks/
+*.apk
+*.aab
 
 # Development files that aren't needed for production builds
 node_modules/
 *.log
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # Documentation files (optional - remove if you need these in your build)
 *.md
 docs/
+README.md
+LICENSE
 
 # Temporary files
 *.tmp
 .cache/
+tmp/
+temp/
 
 # IDE files
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
 # Development scripts and tools
 *.py
 *.sh
 *.keystore
 device-spec.json
-
-# Exclude specific JAR files but keep Gradle wrapper
 bundletool.jar
 
 # Exclude duplicate video files (keep only asset pack videos)
@@ -35,9 +48,34 @@ android/app/src/dev/assets/videos/
 android/.gradle/
 android/build/
 android/app/build/
+android/local.properties
+android/.idea/
+android/*.iml
+android/app/*.iml
+
+# iOS build artifacts (if any)
+ios/build/
+ios/Pods/
+ios/*.xcworkspace
+ios/*.xcuserdata
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Coverage and testing
+coverage/
+*.pid
+*.seed
+*.pid.lock
 
 # Keep these essential files:
 # - package.json (needed for dependencies)
 # - assets/ (contains your video files and icons)
 # - src/ or components/ (your app code)
 # - eas.json (build configuration)
+# - app.json (Expo configuration)
+# - babel.config.js (Babel configuration)
