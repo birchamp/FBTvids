@@ -4,5 +4,4 @@ plugins {
 
 assetPack {
     packName = 'fbtvideos'
-    deliveryType = 'install-time'
 }

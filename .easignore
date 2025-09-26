@@ -28,6 +28,14 @@ device-spec.json
 # Exclude specific JAR files but keep Gradle wrapper
 bundletool.jar
 
+# Exclude duplicate video files (keep only asset pack videos)
+android/app/src/dev/assets/videos/
+
+# Exclude other large directories
+android/.gradle/
+android/build/
+android/app/build/
+
 # Keep these essential files:
 # - package.json (needed for dependencies)
 # - assets/ (contains your video files and icons)
