@@ -168,7 +168,7 @@ function createAssetPackManifest(packageName) {
 }
 
 function createAssetPackBuildGradle() {
-  return `plugins {\n    id 'com.android.asset-pack'\n}\n\nassetPack {\n    packName = '${PACK_NAME}'\n    deliveryType = com.android.build.gradle.internal.dsl.AssetPackBundleSpec.DeliveryType.INSTALL_TIME\n}\n`;
+  return `plugins {\n    id 'com.android.asset-pack'\n}\n\nassetPack {\n    packName = '${PACK_NAME}'\n    getDynamicDelivery().setDeliveryType('install-time')\n}\n`;
 }
 
 function createKotlinModule(packageName) {
