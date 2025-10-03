@@ -1,7 +1,0 @@
-<resources>
-  <string name="app">Foundations BT</string>
-  <string name="navigation">Navigation</string>
-  <string name="home">Accueil</string>
-  <string name="video">Vidéo</string>
-  <string name="errors">Erreurs</string>
-</resources>

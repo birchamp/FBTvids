@@ -85,58 +85,48 @@ android {
 // @generated begin fbt-asset-pack-assetpacks - expo prebuild (DO NOT MODIFY) sync-db8560f5f110189c0ba51cc6590eefc296e802ee
     assetPacks = [":fbtvideos"]
 // @generated end fbt-asset-pack-assetpacks
-    ndkVersion = rootProject.ext.ndkVersion
+    ndkVersion rootProject.ext.ndkVersion
 
-    buildToolsVersion = rootProject.ext.buildToolsVersion
-    compileSdk = rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
 
-    namespace = 'com.unfoldingword.fbtapp'
+    namespace 'com.unfoldingword.fbtapp'
     defaultConfig {
-        applicationId = 'com.unfoldingword.fbtapp'
-        minSdkVersion = rootProject.ext.minSdkVersion
-        targetSdkVersion = rootProject.ext.targetSdkVersion
+        applicationId 'com.unfoldingword.fbtapp'
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName = "1.0.0"
+        versionName "1.0.0"
     }
     signingConfigs {
         debug {
-            storeFile = file('debug.keystore')
-            storePassword = 'android'
-            keyAlias = 'androiddebugkey'
-            keyPassword = 'android'
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
         }
     }
     buildTypes {
         debug {
-            signingConfig = signingConfigs.debug
+            signingConfig signingConfigs.debug
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig = signingConfigs.debug
-            shrinkResources = (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
-            minifyEnabled = enableProguardInReleaseBuilds
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            crunchPngs = (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
-        }
-    }
-
-    flavorDimensions "expo"
-    productFlavors {
-        dev {
-            dimension "expo"
-        }
-        prod {
-            dimension "expo"
+            signingConfig signingConfigs.debug
+            shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            crunchPngs (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
         }
     }
     packagingOptions {
         jniLibs {
-            useLegacyPackaging = (findProperty('expo.useLegacyPackaging')?.toBoolean() ?: false)
+            useLegacyPackaging (findProperty('expo.useLegacyPackaging')?.toBoolean() ?: false)
         }
     }
     androidResources {
-        ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
+        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
     }
 }
 

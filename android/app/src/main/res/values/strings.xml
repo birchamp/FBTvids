@@ -1,10 +1,5 @@
 <resources>
   <string name="app_name">Foundations BT</string>
-  <string name="app">Foundations BT</string>
-  <string name="navigation">Navigation</string>
-  <string name="home">Home</string>
-  <string name="video">Video</string>
-  <string name="errors">Errors</string>
   <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
   <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
 </resources>

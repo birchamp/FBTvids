@@ -31,15 +31,6 @@
       "bundler": "metro",
       "favicon": "./assets/icon.png"
     },
-    "locales": {
-      "en": "./i18n/locales/en.json",
-      "es": "./i18n/locales/es.json",
-      "fr": "./i18n/locales/fr.json",
-      "ar": "./i18n/locales/ar.json",
-      "zh": "./i18n/locales/zh.json",
-      "hi": "./i18n/locales/hi.json",
-      "id": "./i18n/locales/id.json"
-    },
     "extra": {
       "eas": {
         "projectId": "d292c857-f3d4-4c3c-88bf-4bbc99edee77"
