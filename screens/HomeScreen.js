@@ -102,9 +102,6 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.headerIconContainer}>
-          <Ionicons name="school" size={32} color="#fff" />
-        </View>
         <Text style={styles.headerTitle}>{t('app.name')}</Text>
         <Text style={styles.headerSubtitle}>
           {t('app.subtitle')}
@@ -143,9 +140,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#2c3e50',
     alignItems: 'center',
-  },
-  headerIconContainer: {
-    marginBottom: 10,
   },
   headerTitle: {
     fontSize: 24,

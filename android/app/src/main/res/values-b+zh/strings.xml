@@ -1,7 +1,7 @@
 <resources>
-  <string name="app">"[object Object]"</string>
-  <string name="navigation">"[object Object]"</string>
-  <string name="home">"[object Object]"</string>
-  <string name="video">"[object Object]"</string>
-  <string name="errors">"[object Object]"</string>
+  <string name="app">Foundations BT</string>
+  <string name="navigation">导航</string>
+  <string name="home">主页</string>
+  <string name="video">视频</string>
+  <string name="errors">错误</string>
 </resources>

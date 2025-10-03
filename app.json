@@ -46,7 +46,8 @@
       }
     },
     "plugins": [
-      "./plugins/withFbtAssetPack"
+      "./plugins/withFbtAssetPack",
+      "expo-asset"
     ]
   }
 }

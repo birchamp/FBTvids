@@ -1,7 +1,7 @@
 <resources>
-  <string name="app">"[object Object]"</string>
-  <string name="navigation">"[object Object]"</string>
-  <string name="home">"[object Object]"</string>
-  <string name="video">"[object Object]"</string>
-  <string name="errors">"[object Object]"</string>
+  <string name="app">Foundations BT</string>
+  <string name="navigation">नेविगेशन</string>
+  <string name="home">होम</string>
+  <string name="video">वीडियो</string>
+  <string name="errors">त्रुटियां</string>
 </resources>

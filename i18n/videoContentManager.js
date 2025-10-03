@@ -5,18 +5,20 @@ import { useMemo, useCallback } from 'react';
 import enVideoContent from './videoContent/en.json';
 import esVideoContent from './videoContent/es.json';
 import idVideoContent from './videoContent/id.json';
+import arVideoContent from './videoContent/ar.json';
+import frVideoContent from './videoContent/fr.json';
+import hiVideoContent from './videoContent/hi.json';
+import zhVideoContent from './videoContent/zh.json';
 
 // Map of language codes to video content
 const videoContentMap = {
   en: enVideoContent,
   es: esVideoContent,
   id: idVideoContent,
-  // Add more languages as they become available
-  // For now, fallback to English for other languages
-  fr: enVideoContent,
-  ar: enVideoContent,
-  zh: enVideoContent,
-  hi: enVideoContent,
+  ar: arVideoContent,
+  fr: frVideoContent,
+  hi: hiVideoContent,
+  zh: zhVideoContent,
 };
 
 export const useVideoContent = () => {
